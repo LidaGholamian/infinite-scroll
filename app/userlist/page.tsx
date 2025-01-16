@@ -8,13 +8,14 @@ import styles from "./UserList.module.scss";
 
 const UserList: React.FC = () => {
   const [page, setPage] = useState<number>(1);
-  const [hasMore, setHasMore] = useState<boolean>(true);
 
-  const { users, loading, loadUsers } = useFetchUsers(page, hasMore);
+  const { users, loading, hasMore } = useFetchUsers(page);
 
-  const loadingRef = useIntersectionObserver(loading, hasMore, () =>
-    setPage((prevPage) => prevPage + 1)
-  );
+  const loadingRef = useIntersectionObserver(loading, hasMore, () => {
+    if (hasMore && !loading) {
+      setPage((prevPage) => prevPage + 1);
+    }
+  });
 
   return (
     <div className={styles.userList}>

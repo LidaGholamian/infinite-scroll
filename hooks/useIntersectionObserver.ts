@@ -10,9 +10,9 @@ export const useIntersectionObserver = (
 
   useEffect(() => {
     const options = {
-      root: null, // Viewport as root
+      root: null, 
       rootMargin: "0px",
-      threshold: 1.0, // Trigger when 100% visible
+      threshold: 1.0, 
     };
 
     const intersectionCallback: IntersectionObserverCallback = (entries) => {
