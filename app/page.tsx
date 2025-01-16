@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className={styles["home__main"]}>
-      <h2 className={styles["home__title"]}>Welcome to My Next.js App!</h2>
+      <h2 className={styles["home__title"]}>Infinitie User List</h2>
       <p className={styles["home__description"]}>
         Click the button below to view the user list:
       </p>

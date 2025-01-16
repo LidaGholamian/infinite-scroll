@@ -2,6 +2,7 @@ import { UsersProps } from "@/types/user.type";
 import styles from "./User.module.scss";
 import { FaFire } from "react-icons/fa";
 import { MdOutlineMailOutline } from "react-icons/md";
+import Link from "next/link";
 
 export const User: React.FC<UsersProps> = ({
   firstName,
@@ -31,10 +32,10 @@ export const User: React.FC<UsersProps> = ({
           <FaFire />
           {phoneNumber}
         </p>
-        <a href={`mailto:${email}`} className={styles.user__info__email}>
+        <Link href={`mailto:${email}`} className={styles.user__info__email}>
           <MdOutlineMailOutline />
           {email}
-        </a>
+        </Link>
         <p className={styles.user__info__address}>
           {address.street}, {address.city}, {address.state},{" "}
           {address.postalCode}, {address.country}
