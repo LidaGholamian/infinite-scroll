@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "@/styles/Layout.module.scss";
 import { Vazirmatn } from "next/font/google";
 import Header from "./components/organisms/Header/Header";
 import Footer from "./components/organisms/Footer/Footer";
@@ -21,9 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={vazirmatn.className}>
-      <body className=" min-h-screen grid grid-rows-[80px_1fr_auto]">
+      <body className="layout">
         <Header />
-        <main>{children}</main>
+        <main className="layout__main">{children}</main>
         <Footer />
       </body>
     </html>

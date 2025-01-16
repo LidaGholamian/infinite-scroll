@@ -1,0 +1,14 @@
+.userList {
+  max-width: 600px; // Adjust as needed
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+
+
+  &__loading {
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    color: #666;
+  }
+}

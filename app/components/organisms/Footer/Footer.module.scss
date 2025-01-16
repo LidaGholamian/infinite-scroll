@@ -1,12 +1,14 @@
+// Block: footer
 .footer {
     background-color: #f8f9fa;
     color: #6c757d;
-    padding: 1rem;
+    padding: 18px;
     text-align: center;
   
-    p {
+    // Element: footer__text
+    &__text {
       margin: 0;
-      font-size: 0.9rem;
+      font-size: 14px;
     }
   }
   

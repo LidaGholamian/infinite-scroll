@@ -1,12 +1,14 @@
+// Block: header
 .header {
     background-color: #007bff;
     color: white;
-    padding: 1rem;
+    padding: 18px;
     text-align: center;
   
-    h1 {
+    // Element: header__title
+    &__title {
       margin: 0;
-      font-size: 1.5rem;
+      font-size: 24px;
     }
   }
   
