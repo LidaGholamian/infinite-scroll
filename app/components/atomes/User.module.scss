@@ -1,13 +1,24 @@
+@import '../../../styles/variables.scss';
+
+
 .user {
   display: grid;
-  grid-template-columns: 50px 1fr 30px;
+  grid-template-columns: 200px 1fr 30px;
   align-items: center;
   padding: 10px 15px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid $color-border;
+  gap: 80px;
+
+  &__profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
 
   &__profile img {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
   }
 
@@ -15,32 +26,72 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
+    color: $color-text;
 
     h3 {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: bold;
       margin: 0;
+      color: $color-primary !important; 
+      overflow-wrap: break-word;
+    }
+
+    p {
+      font-size: 12px;
+      font-weight: bold;
+      color: $color-neutral-grey; 
+    }
+
+    a {
+      color: $color-primary;
+      font-weight: bold;
     }
 
     &__username {
       font-size: 14px;
-      color: #666;
+      color: $color-neutral-grey;
     }
+
+  }
+  
+  &__info {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    gap: 10px;
 
     &__contact {
       font-size: 14px;
-      color: #333;
+      color: $color-text-light;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      svg {
+        color: $color-secondary;
+      }
     }
 
     &__email {
-      font-size: 14px;
-      color: #007bff;
-      text-decoration: none;
+      font-size: 18px;
+      color: $color-primary;
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      gap: 5px;
+
+      svg {
+        color: $color-neutral-dark;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
 
     &__address {
       font-size: 12px;
-      color: #999;
+      color: $color-text-light;
     }
   }
 

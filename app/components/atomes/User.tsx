@@ -17,24 +17,25 @@ export const User: React.FC<UsersProps> = ({
     <div className={styles.user}>
       <div className={styles.user__profile}>
         <img src={picture} alt={`${firstName} ${lastName}`} />
+        <div className={styles.user__details}>
+          <h3>
+            {firstName} {lastName}
+          </h3>
+          <p className={styles.user__username}>
+            {username} / {gender.charAt(0).toUpperCase() + gender.slice(1)}
+          </p>
+        </div>
       </div>
-      <div className={styles.user__details}>
-        <h3>
-          {firstName} {lastName}
-        </h3>
-        <p className={styles.user__username}>
-          {username} / {gender.charAt(0).toUpperCase() + gender.slice(1)}
-        </p>
-        <p className={styles.user__contact}>
-          <span role="img" aria-label="phone">
-            🔥
-          </span>{" "}
+      <div className={styles.user__info}>
+        <p className={styles.user__info__contact}>
+          <FaFire />
           {phoneNumber}
         </p>
-        <a href={`mailto:${email}`} className={styles.user__email}>
+        <a href={`mailto:${email}`} className={styles.user__info__email}>
+          <MdOutlineMailOutline />
           {email}
         </a>
-        <p className={styles.user__address}>
+        <p className={styles.user__info__address}>
           {address.street}, {address.city}, {address.state},{" "}
           {address.postalCode}, {address.country}
         </p>
