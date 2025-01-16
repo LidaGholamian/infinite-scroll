@@ -1,70 +1,20 @@
 "use client";
 
-import { fetchUsers } from "@/services/api";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { User } from "../components/atomes/User";
-import { UsersProps } from "@/types/user.type";
+import { useFetchUsers } from "@/hooks/useFetchUsers";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import styles from "./UserList.module.scss";
 
 const UserList: React.FC = () => {
-  const [users, setUsers] = useState<UsersProps[]>([]);
   const [page, setPage] = useState<number>(1);
-  const [loading, setLoading] = useState<boolean>(false);
   const [hasMore, setHasMore] = useState<boolean>(true);
 
-  const observerRef = useRef<IntersectionObserver | null>(null);
-  const loadingRef = useRef<HTMLDivElement | null>(null);
+  const { users, loading, loadUsers } = useFetchUsers(page, hasMore);
 
-  // Fetch users
-  const loadUsers = async () => {
-    setLoading(true);
-    try {
-      const newUsers = await fetchUsers(page);
-      if (newUsers.length === 0) {
-        setHasMore(false); // No more data to fetch
-      } else {
-        setUsers((prevUsers) => [...prevUsers, ...newUsers]);
-      }
-    } catch (error) {
-      console.error("Error fetching users:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Trigger loadUsers when the page changes
-  useEffect(() => {
-    if (hasMore) {
-      loadUsers();
-    }
-  }, [page]);
-
-  // Set up Intersection Observer
-  useEffect(() => {
-    const options = {
-      root: null, // Viewport as root
-      rootMargin: "0px",
-      threshold: 1.0, // Trigger when 100% visible
-    };
-
-    const callback: IntersectionObserverCallback = (entries) => {
-      const entry = entries[0];
-      if (entry.isIntersecting && !loading && hasMore) {
-        setPage((prevPage) => prevPage + 1);
-      }
-    };
-
-    if (loadingRef.current) {
-      observerRef.current = new IntersectionObserver(callback, options);
-      observerRef.current.observe(loadingRef.current);
-    }
-
-    return () => {
-      if (observerRef.current && loadingRef.current) {
-        observerRef.current.unobserve(loadingRef.current);
-      }
-    };
-  }, [loading, hasMore]);
+  const loadingRef = useIntersectionObserver(loading, hasMore, () =>
+    setPage((prevPage) => prevPage + 1)
+  );
 
   return (
     <div className={styles.userList}>
